@@ -46,9 +46,9 @@ public class DriverService {
     /*
     * updating a driver
     * */
-    public ResponseEntity<DriverEntity> update(Long id, DriverEntity driver){
+    public Optional<DriverEntity> update(Long id, DriverEntity driver){
         Optional<DriverEntity> driverRepoById = driverRepo.findById(id);
-        if (driverRepoById.isPresent()){
+        if (driverRepoById.isPresent()) {
             DriverEntity driverEntity = driverRepoById.get();
             driverEntity.setCity(driver.getCity());
             driverEntity.setAddress(driver.getAddress());
@@ -59,9 +59,8 @@ public class DriverService {
             driverEntity.setPhoneNumber(driver.getPhoneNumber());
             driverEntity.setVehicleId(driver.getVehicleId());
             driverEntity.setLastName(driver.getLastName());
-            return ResponseEntity.ok(driverRepo.save(driverEntity));
+            driverRepo.save(driverEntity);
         }
-        else
-            return ResponseEntity.notFound().build();
+            return driverRepoById;
      }
 }

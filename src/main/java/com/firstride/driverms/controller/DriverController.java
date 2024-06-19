@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/driver")
@@ -32,8 +33,8 @@ public class DriverController {
         return ResponseEntity.ok(driverService.deleteById(id));
     }
     @PatchMapping("updatedriver/{id}")
-    public ResponseEntity<DriverEntity> updateDriver(Long id, DriverEntity driver){
-        return driverService.update(id, driver);
+    public ResponseEntity<Optional<DriverEntity>> updateDriver(Long id, DriverEntity driver){
+        return ResponseEntity.ok(driverService.update(id, driver));
     }
 
 
