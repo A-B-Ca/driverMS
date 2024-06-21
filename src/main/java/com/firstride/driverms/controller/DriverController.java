@@ -25,15 +25,15 @@ public class DriverController {
         return ResponseEntity.ok(driverService.findAll());
     }
     @GetMapping("/findById/{id}")
-    public ResponseEntity<DriverEntity> findById(Long id){
+    public ResponseEntity<DriverEntity> findById(@PathVariable Long id){
         return ResponseEntity.ok(driverService.findById(id));
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<DriverEntity> deleteByID(Long id){
+    public ResponseEntity<DriverEntity> deleteByID(@PathVariable Long id){
         return ResponseEntity.ok(driverService.deleteById(id));
     }
     @PatchMapping("updatedriver/{id}")
-    public ResponseEntity<Optional<DriverEntity>> updateDriver(Long id, DriverEntity driver){
+    public ResponseEntity<Optional<DriverEntity>> updateDriver(@PathVariable Long id,@RequestBody DriverEntity driver){
         return ResponseEntity.ok(driverService.update(id, driver));
     }
 
